@@ -223,7 +223,12 @@ open class PieSliceLayer: CALayer, CAAnimationDelegate {
     fileprivate func createArcPath(center: CGPoint, offsetAngle: CGFloat = 0) -> CGPath {
         let path = CGMutablePath()
         path.addRelativeArc(center: center, radius: innerRadius, startAngle: startAngleManaged + offsetAngle, delta: endAngleManaged - startAngleManaged)
-        path.addRelativeArc(center: center, radius: outerRadius, startAngle: endAngleManaged + offsetAngle, delta: -(endAngleManaged - startAngleManaged))
+        if selected {
+            path.addRelativeArc(center: center, radius: outerRadius + 5, startAngle: endAngleManaged + offsetAngle, delta: -(endAngleManaged - startAngleManaged))
+        }
+        else {
+            path.addRelativeArc(center: center, radius: outerRadius, startAngle: endAngleManaged + offsetAngle, delta: -(endAngleManaged - startAngleManaged))
+        }
         path.closeSubpath()
         return path
     }
@@ -242,7 +247,8 @@ open class PieSliceLayer: CALayer, CAAnimationDelegate {
     }
     
     fileprivate func animateSelected(selected: Bool) {
-        position = calculatePosition(angle: midAngle, p: position, offset: selected ? selectedOffset : -selectedOffset)
+//        position = calculatePosition(angle: midAngle, p: position, offset: selected ? selectedOffset : -selectedOffset)
+        setNeedsDisplay()
     }
     
     public func midPoint(radius: CGFloat) -> CGPoint {
