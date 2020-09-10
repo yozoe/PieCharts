@@ -51,7 +51,7 @@ import UIKit
     var animated: Bool {
         return animDuration > 0
     }
-
+    
     // MARK: -
     
     public fileprivate(set) var container: CALayer = CALayer()
@@ -156,6 +156,10 @@ import UIKit
                 slice.view.selected = !slice.view.selected
             }
         }
+    }
+    
+    open func setSelectedIndex(index: Int, selected: Bool) {
+        slices[index].view.selected = selected
     }
     
     public func insertSlice(index: Int, model: PieSliceModel) {

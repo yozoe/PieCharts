@@ -32,7 +32,7 @@ class DoughnutDemo: UIViewController, PieChartDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
 
-        chartView.layers = [createPlainTextLayer(), createTextWithLinesLayer()]
+//        chartView.layers = [createPlainTextLayer(), createTextWithLinesLayer()]
         chartView.delegate = self
         chartView.models = createModels() // order is important - models have to be set at the end
     }
